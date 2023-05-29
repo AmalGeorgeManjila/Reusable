@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --largeFont:24px;
+    --mainFont:20px;
+    --subFont:17px;
+    --smallFont:12px;
+
+    --lightGreen:#91C024;
+    --lightGreenShade:#91c0243a;
+    --lightGrey:#29505117;
+}
+
+body{
+    background-color: var(--lightGrey);
+   
+}
