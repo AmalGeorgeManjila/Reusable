@@ -1,34 +1,48 @@
 .header{
     width:100%;
+    max-width: 1500px;
     height: 90px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-  
+    justify-content: space-between;
+  padding-inline: 40px;
     background-color: #ffffff;
-    
+    gap: 2%;
 }
 
 
 .logo_section{
-    flex-basis: 25%;
-    padding-inline: 30px;
+  
+    flex: 1.5;
+    /* padding-inline: 30px; */
+    /* background-color: aqua; */
 }
 
 .icon_section{
-    gap: 40px;
-    width: 70%;
-    flex-basis: 60%;
+    /* background-color: bisque; */
+    gap: 30px;
+   
+    flex: 3;
 }
 
+
+.thirddiv{
+    /* background-color: crimson; */
+    flex: 1.5;
+    display:flex ;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+
 .profile_section{
+   
 text-align: center;
 
-    flex-basis: 15%;
     font-size: var(--mainFont);
     font-weight: 500;
     display: flex;
-    gap: 15px;
+    
     align-items: center;
 }
 
@@ -37,6 +51,7 @@ text-align: center;
     border-radius: 50%;
 }
 .expandable_icons,.unexpandable_icons{
+    
     display: flex;
    align-items: center;
    justify-content: center;
@@ -50,6 +65,8 @@ text-align: center;
 .unexpandable_icons:active,.unexpandable_icons:focus{
     background-color: var(--lightGreenShade);
     color: var(--lightGreen);
+    border: none;
+    outline: none;
 }
 
 .expandable_icons:hover{
@@ -61,7 +78,7 @@ text-align: center;
    
      background-color: var(--lightGrey);
     aspect-ratio: auto;
-    padding-inline: 15px;
+    padding-inline: 10px;
     font-weight: 500;
 }
 
@@ -74,7 +91,7 @@ text-align: center;
     width: auto;
     background-color: var(--lightGreenShade);
     color: var(--lightGreen);
-    padding-inline: 15px;
+    padding-inline: 10px;
     font-weight: 500;
 }
 
@@ -83,6 +100,7 @@ width: 300px;
    display: flex;
    justify-content: space-between;
   
+  
    
 }
 
@@ -90,15 +108,13 @@ width: 300px;
     flex: 1 0 1;
 }
 
-
-
 .icon{
 
     padding-left: 20px;
     background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
     background-size: 20px;
     border-radius: 5px;
-    width: 40%;
+    width: 60%;
     outline: none;
     border: none;
     background-color: var(--lightGrey);

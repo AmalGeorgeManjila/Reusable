@@ -1,1 +1,142 @@
-<p>posts works!</p>
+<div class="feed ">
+    <div class="post p-4 mb-4 " *ngFor="let  post of post, index as i">
+        <div class="postdetails">
+
+
+            <!-- headerpart -->
+
+
+            <div class="posthead d-flex">
+                <div class="profiledetails d-flex">
+                    <img src="../../../assets/Rectangle 18mathew.png" alt="" width="60" class="me-3">
+                    <div class="namebox">
+                        <h5>{{post.name}}</h5>
+                        <p class="hourago">{{post.time}} hrs ago {{post.team?"on ":''}} <span
+                                class="community">{{post.team}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="bookmark d-flex ">
+                    <i class="fa-regular fa-bookmark me-2"></i><span>...</span>
+                </div>
+            </div>
+
+            <!-- content or post -->
+
+            <div>{{!post.showFull?post.content.substring(200,0):post.content}} <span class="text-secondary"
+                    (click)="post.showFull=!post.showFull" *ngIf="post.content.length>=200">{{post.showFull?"
+                    ...less":"...more"}}</span>
+            </div>
+
+            <span class="tags me-1 " *ngFor="let tag of post.tags">#{{tag}}</span>
+            <hr>
+
+
+            <!-- like comment share -->
+
+
+            <div class="share_comment_like d-flex text-secondary mb-3">
+                <div class="me-3 " [style.color]="post.liked?'black':'grey'">
+                    <i (click)="likeFunction(i)"
+                        [ngClass]="post.liked?'fa-solid fa-thumbs-up me-2':'fa-regular fa-thumbs-up  me-2'"></i>
+                    {{post.likes + " likes"}}
+                </div>
+                <div class="me-3">
+                    <i class="fa-regular fa-comment  me-2"></i> {{post.comments.length + " Comments"}}
+                </div>
+                <div class="me-3">
+                    <i class="fa-solid fa-share-nodes  me-2"></i> {{"Share"}}
+                </div>
+            </div>
+
+
+            <!-- comment input -->
+
+            <div class="commentinput d-flex mb-2">
+                <div class="commentimg"><img src="../../../assets/Ellipse 5sonu.png" alt=""></div>
+                <div class="inputcomment"><input type="text" placeholder="Write your comment"></div>
+            </div>
+
+
+            <!-- comments -->
+
+            <div class="commentsbox mb-2 " *ngFor="let comments of post.comments.slice(0,post.fullcomment), index as j">
+
+                <!-- single comment -->
+                
+
+                    <div class="d-flex singlecomment mb-3">
+                        <div>
+                            <img src="../../../assets/Ellipse 5sonu.png" alt="">
+                        </div>
+                        <div class="comment w-100">
+                            <span
+                                style="text-transform: capitalize;font-weight: 600;font-size: medium;">{{comments.commentname
+                                + " "}}</span>
+                            <span class="text-secondary " style="font-size:smaller ;">{{" "+random() + " Min"}} </span>
+                            <br>
+                            <span class="mb-2">{{comments.comment}}</span>
+
+
+                            <div class="share_comment_like d-flex text-secondary mb-3 mt-2" style="font-size:small ;">
+                                <div class="me-3 " [style.color]="comments.commentliked?'#8cbb1e':'grey'">
+                                    <i (click)="CommentlikeFunction(i,j)"
+                                        [ngClass]="comments.commentliked?'fa-solid fa-heart me-1':'fa-regular fa-heart  me-1'"></i>
+                                    {{comments.likes }}
+                                </div>
+                                <div class="me-3">
+                                    <i class="fa-regular fa-comment  me-1"></i> {{"reply"}}
+                                </div>
+                                <div class="me-3" *ngIf=" post.comments[j].replys.length>=2"  (click)="post.comments[j].fullreply==1?post.comments[j].fullreply=comments.replys.length:post.comments[j].fullreply=1">
+                                    <b>{{post.comments[j].fullreply==1?"View all replies":"Hide replies"}}</b>
+                                </div>
+
+                            </div>
+
+                            <!-- replys -->
+
+
+                            <div *ngFor="let rep of comments.replys.slice(0,post.comments[j].fullreply),index as k" class="d-flex mb-2">
+                                <div>
+                                    <img src="../../../assets/Ellipse 5sonu.png" alt="">
+                                </div>
+                                <div class="comment ms-2">
+                                    <span
+                                        style="text-transform: capitalize;font-weight: 600;font-size: medium;">{{rep.replyname
+                                        + " "}}</span>
+                                    <span class="text-secondary " style="font-size:smaller ;">{{" "+random() + " Min"}}
+                                    </span><br>
+                                    <span>{{rep.reply}}</span>
+                                    <div class="share_comment_like d-flex text-secondary mb-3 mt-2"
+                                        style="font-size:small ;">
+                                        <div class="me-3 " [style.color]="rep.replyliked?'#8cbb1e':'grey'">
+                                            <i (click)="replylikeFunction(i,j,k)"
+                                                [ngClass]="rep.replyliked?'fa-solid fa-heart me-1':'fa-regular fa-heart  me-1'"></i>
+                                            {{rep.likes }}
+                                        </div>
+                                        <div class="me-3">
+                                            <i class="fa-regular fa-comment  me-1"></i> {{"reply"}}
+                                        </div>
+                                      
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                   
+                   
+
+                
+
+            </div>
+
+        </div>
+        <button class="viewallcomments" (click)="post.fullcomment==1?post.fullcomment=post.comments.length:post.fullcomment=1" >{{post.fullcomment!=1?"View less":"View all comments"}}</button>
+
+
+    </div>
+</div>

@@ -8,14 +8,20 @@
     --largeFont:24px;
     --mainFont:20px;
     --subFont:17px;
-    --smallFont:12px;
+    --smallFont:14px;
 
-    --lightGreen:#91C024;
+    --lightGreen:#8cbb1e;
     --lightGreenShade:#91c0243a;
-    --lightGrey:#29505117;
+    --lightGrey:#426c6e1e;
+    --lightlightgrey:rgba(0, 0, 0, 0.25);
+    --borderradius:10px;
 }
 
 body{
     background-color: var(--lightGrey);
    
+}
+
+::-webkit-scrollbar{
+    display: none;
 }

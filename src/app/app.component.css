@@ -1,0 +1,13 @@
+app-header{
+    position: sticky;
+    top:0px;
+
+}
+
+
+
+app-layout{
+    position: fixed;
+    top: 0px;
+    
+}

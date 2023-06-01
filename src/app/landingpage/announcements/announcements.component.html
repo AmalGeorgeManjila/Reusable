@@ -1,1 +1,65 @@
-<p>announcements works!</p>
+<div class="announcementarea ps-4 pe-4 p-2">
+    <div class="subdivisions">
+        <h3 class="mb-4 mt-1">Announcements <i class="fa-solid fa-bullhorn ms-3"></i></h3>
+        <div class="content">
+            <div class="h5">TNP India</div>
+            <span>5 mins ago</span>
+            <div class="h6">{{!showFull?contentstring.substring(100,0):contentstring}} <span class="text-light"
+                    (click)="showFull=!showFull" *ngIf="contentstring.length>=100">{{showFull?"
+                    ...less":"...more"}}</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="subdivisions">
+        <h3 class="mb-4 mt-1">Community <i class="fa-solid fa-users ms-3"></i> </h3>
+
+        <div class="communitySubdivision mb-3">
+            <div class="communityname">
+                <img src="../../../assets/Ellipse 7.png" alt=""><span>TNP India</span>
+            </div>
+            <div class="membercount">435+</div>
+        </div>
+
+        <div class="communitySubdivision mb-3">
+            <div class="communityname">
+                <img src="../../../assets/Ellipse 8.png" alt=""><span>Digital_Team</span>
+            </div>
+            <div class="membercount">435+</div>
+        </div>
+
+        <div class="communitySubdivision mb-3">
+            <div class="communityname">
+                <img src="../../../assets/Ellipse 9.png" alt=""><span>Team_Metaverse</span>
+            </div>
+            <div class="membercount">435+</div>
+        </div>
+
+
+    </div>
+    <div class="subdivisions">
+        <h3 class="mb-4 mt-1"> Upcoming Events <i class="fa-regular fa-calendar ms-3"></i></h3>
+
+        <div class="eventslist mt-4" [style.background]="color[random()]" *ngFor="let i of color">
+            <div class="upcomingevents">
+                <div class="eventname">TNP India <span> Webinar</span></div>
+
+                <div class="eventdesc">{{!showFull?contentstring.substring(30,0):contentstring}} <span
+                        class="text-light" (click)="showFull=!showFull" *ngIf="contentstring.length>=100">{{showFull?"
+                        ...less":"...more"}}</span>
+                </div>
+            </div>
+            <div class="date">
+                <h5>22</h5>
+                <p>July</p>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+</div>

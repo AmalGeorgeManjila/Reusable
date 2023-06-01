@@ -1,0 +1,141 @@
+.announcementarea{
+    flex: 1;
+    border-radius: var(--borderradius);
+    background-color: #ffffff;
+    overflow: scroll;
+    /* background-color:rebeccapurple; */
+}
+
+.announcementarea::-webkit-scrollbar{
+    display: none;
+}
+
+.subdivisions{
+    border-bottom: 2px solid #d0d0d0;
+    padding-block: 10px;
+}
+
+.subdivisions>h3{
+    color: var(--lightlightgrey);
+    font-size: var(--mainFont);
+display: flex;
+align-items: center;
+
+}
+
+.subdivisions>h3>i{
+width: 30px;
+display: grid;
+font-size: var(--subFont);
+color: rgba(0, 0, 0, 0.45);
+place-items: center;
+    /* padding: 3px; */
+    background-color: rgba(89, 85, 85, 0.121);
+    border-radius: 50%;
+    aspect-ratio: 1;
+    /* font-weight: 500; */
+}
+
+.content{
+    width: 100%;
+    background-color: rgb(16, 79, 79);
+    border-radius: var(--borderradius);
+    padding: 10px;
+    
+   
+
+}
+
+.content>.h5,.content>.h6{
+    font-size: var(--subFont);
+    color: #f5f5f5;
+}
+
+
+.content>.h6{
+    font-weight: 350;
+    font-size: var(--smallFont);
+}
+
+.content>span{
+    font-size: var(--smallFont);
+    color: #f5f5f580;
+  
+}
+
+.communitySubdivision{
+    display: flex;
+    align-items:center ;
+justify-content: space-between;
+}
+
+.communityname{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: var(--subFont);
+    font-weight: 500;
+}
+
+.communityname>img{
+    width: 35px;
+    aspect-ratio: 1;
+    margin-right: 10px;
+}
+
+.membercount{
+    width:auto;
+    padding-inline: 5px;
+    border-radius: 50px;
+    background-color: rgba(89, 85, 85, 0.121);
+font-weight: 500;
+    
+}
+
+.eventslist{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: rgb(4, 69, 69); */
+    padding:10px 10px;
+    border-radius: var(--borderradius);
+gap: 10px;
+    
+}
+.upcomingevents{
+    flex: 3;
+}
+
+
+.eventname{
+    font-size: var(--subFont);
+    color: #f5f5f5;
+    
+}
+
+.eventname>span{
+    font-size: var(--smallFont);
+    color: #000;
+    background-color: #fff;
+    border-radius: 50px;
+    padding-inline: 6px;
+    margin-left: 5px;
+}
+
+.eventdesc{
+    font-weight: 350;
+    font-size: var(--smallFont);
+    color: #f5f5f5;
+}
+
+.date{
+   
+    flex: 1;
+    height: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background-color: #ffffff38;
+    color: #fff;
+}

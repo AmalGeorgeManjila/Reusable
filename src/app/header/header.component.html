@@ -1,37 +1,45 @@
-<header class="header">
-    <div class="logo_section">
-        <img src="../../assets/Group 2.png" alt="" width="140">
-    </div>
-
-    <div class="icon_section d-flex">
-        <div class="expandableiconsgrp">
-            <div [ngClass]="hoverOrClick.home?'expanded_icons':'expandable_icons'" (click)="hoverOrClickSelect('home')"
-                (mouseenter)="showHome=true" (mouseleave)="showHome=false">
-                <i class="fa fa-home "></i><span *ngIf="hoverOrClick.home || showHome" class="ms-2">Home</span>
+<div class="w-100 " style="background-color: #fff;">
+    <header class="header m-auto">
+        <div class="logo_section">
+            <img src="../../assets/Group 2.png" alt="" width="140">
+        </div>
+    
+        <div class="icon_section d-flex">
+            <div class="expandableiconsgrp">
+                <div [ngClass]="hoverOrClick.home?'expanded_icons':'expandable_icons'" (click)="hoverOrClickSelect('home')"
+                    (mouseenter)="showHome=true" (mouseleave)="showHome=false">
+                    <i class="fa fa-home "></i><span *ngIf="hoverOrClick.home || showHome" class="ms-2">Home</span>
+                </div>
+                <div [ngClass]="hoverOrClick.community?'expanded_icons':'expandable_icons'"
+                    (click)="hoverOrClickSelect('community')" (mouseenter)="showCommunity=true"
+                    (mouseleave)="showCommunity=false">
+                    <i class="fa-solid fa-users"></i><span *ngIf="hoverOrClick.community || showCommunity"
+                        class="ms-2">Community</span>
+                </div>
+                <div [ngClass]="hoverOrClick.events?'expanded_icons':'expandable_icons'"
+                    (click)="hoverOrClickSelect('events')" (mouseenter)="showEvents=true" (mouseleave)="showEvents=false">
+                    <i class="fa-regular fa-calendar "></i><span *ngIf="hoverOrClick.events  || showEvents"
+                        class="ms-2">Events</span>
+                </div>
             </div>
-            <div [ngClass]="hoverOrClick.community?'expanded_icons':'expandable_icons'"
-                (click)="hoverOrClickSelect('community')" (mouseenter)="showCommunity=true"
-                (mouseleave)="showCommunity=false">
-                <i class="fa-solid fa-users"></i><span *ngIf="hoverOrClick.community || showCommunity"
-                    class="ms-2">Community</span>
-            </div>
-            <div [ngClass]="hoverOrClick.events?'expanded_icons':'expandable_icons'"
-                (click)="hoverOrClickSelect('events')" (mouseenter)="showEvents=true" (mouseleave)="showEvents=false">
-                <i class="fa-regular fa-calendar "></i><span *ngIf="hoverOrClick.events  || showEvents"
-                    class="ms-2">Events</span>
+        
+    
+            <input type="text" placeholder="  Search for people ,Posts, Community, events .. " class="icon">
+        </div>
+        <div class="thirddiv">
+               <div class="d-flex align-items-center ">
+                 <button class="unexpandable_icons one me-5">
+                     <i class="fa-regular fa-comments "></i>
+                 </button>
+                 <button class="unexpandable_icons two">
+                     <i class="fa-regular fa-bell "></i>
+                 </button>
+               </div>
+            
+            
+            <div class="profile_section">
+                <span>Sonu</span><img src="../../assets/Ellipse 5sonu (1).png" alt="">
             </div>
         </div>
-
-        <input type="text" placeholder="  Search for people ,Posts, Community, events .. "  class="icon"> 
-        <button class="unexpandable_icons one">
-            <i class="fa-regular fa-comments "></i>
-        </button>
-        <button class="unexpandable_icons two">
-            <i class="fa-regular fa-bell "></i>
-        </button>
-    </div>
-
-    <div class="profile_section">
-        <span>Sonu</span><img src="../../assets/Ellipse 5sonu (1).png" alt="">
-    </div>
-</header>
+    </header>
+</div>
