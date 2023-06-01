@@ -1,5 +1,5 @@
 <div class="feed ">
-    <div class="post p-4 mb-4 " *ngFor="let  post of post, index as i">
+    <div class="post p-4 mb-4 " *ngFor="let  post of posts, index as i">
         <div class="postdetails">
 
 
@@ -36,12 +36,12 @@
 
 
             <div class="share_comment_like d-flex text-secondary mb-3">
-                <div class="me-3 " [style.color]="post.liked?'black':'grey'">
-                    <i (click)="likeFunction(i)"
+                <div class="me-3 " [style.color]="post.liked?'black':'grey'" >
+                    <i 
                         [ngClass]="post.liked?'fa-solid fa-thumbs-up me-2':'fa-regular fa-thumbs-up  me-2'"></i>
                     {{post.likes + " likes"}}
                 </div>
-                <div class="me-3">
+                <div class="me-3" (click)="post.fullcomment==1?post.fullcomment=post.comments.length:post.fullcomment=1">
                     <i class="fa-regular fa-comment  me-2"></i> {{post.comments.length + " Comments"}}
                 </div>
                 <div class="me-3">
@@ -60,7 +60,7 @@
 
             <!-- comments -->
 
-            <div class="commentsbox mb-2 " *ngFor="let comments of post.comments.slice(0,post.fullcomment), index as j">
+            <div class="commentsbox mb-2 " *ngFor="let com of post.comments.slice(0,post.fullcomment), index as j">
 
                 <!-- single comment -->
                 
@@ -71,23 +71,23 @@
                         </div>
                         <div class="comment w-100">
                             <span
-                                style="text-transform: capitalize;font-weight: 600;font-size: medium;">{{comments.commentname
+                                style="text-transform: capitalize;font-weight: 600;font-size: medium;">{{com.commentname
                                 + " "}}</span>
                             <span class="text-secondary " style="font-size:smaller ;">{{" "+random() + " Min"}} </span>
                             <br>
-                            <span class="mb-2">{{comments.comment}}</span>
+                            <span class="mb-2">{{com.comment}}</span>
 
 
                             <div class="share_comment_like d-flex text-secondary mb-3 mt-2" style="font-size:small ;">
-                                <div class="me-3 " [style.color]="comments.commentliked?'#8cbb1e':'grey'">
+                                <div class="me-3 " [style.color]="com.commentliked?'#8cbb1e':'grey'">
                                     <i (click)="CommentlikeFunction(i,j)"
-                                        [ngClass]="comments.commentliked?'fa-solid fa-heart me-1':'fa-regular fa-heart  me-1'"></i>
-                                    {{comments.likes }}
+                                        [ngClass]="com.commentliked?'fa-solid fa-heart me-1':'fa-regular fa-heart  me-1'"></i>
+                                    {{com.likes }}
                                 </div>
-                                <div class="me-3">
+                                <div class="me-3" >
                                     <i class="fa-regular fa-comment  me-1"></i> {{"reply"}}
                                 </div>
-                                <div class="me-3" *ngIf=" post.comments[j].replys.length>=2"  (click)="post.comments[j].fullreply==1?post.comments[j].fullreply=comments.replys.length:post.comments[j].fullreply=1">
+                                <div class="me-3" *ngIf="posts[i].fullcomment!=1 && post.comments[j].replys.length>=2"  (click)="posts[i].comments[j].fullreply==1?posts[i].comments[j].fullreply=com.replys.length:posts[i].comments[j].fullreply=1">
                                     <b>{{post.comments[j].fullreply==1?"View all replies":"Hide replies"}}</b>
                                 </div>
 
@@ -96,7 +96,7 @@
                             <!-- replys -->
 
 
-                            <div *ngFor="let rep of comments.replys.slice(0,post.comments[j].fullreply),index as k" class="d-flex mb-2">
+                            <div *ngFor="let rep of com.replys.slice(0,post.comments[j].fullreply),index as k" class="d-flex mb-2">
                                 <div>
                                     <img src="../../../assets/Ellipse 5sonu.png" alt="">
                                 </div>

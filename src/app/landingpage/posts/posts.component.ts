@@ -9,7 +9,7 @@ export class PostsComponent {
 
   
   
-  post:any=[{
+  posts:any=[{
 
     "name":"Louis" ,
     
@@ -320,20 +320,20 @@ export class PostsComponent {
 
 
     likeFunction(i:any){
-      this.post[i].liked=!this.post[i].liked,
-      this.post[i].liked?this.post[i].likes+=1:this.post[i].likes-=1;
+      this.posts[i].liked=!this.posts[i].liked,
+      this.posts[i].liked?this.posts[i].likes+=1:this.posts[i].likes-=1;
     }
 
 
     CommentlikeFunction(i:any,commentno:any){
-      this.post[i].comments[commentno].commentliked=!this.post[i].comments[commentno].commentliked,
-      this.post[i].comments[commentno].commentliked?this.post[i].comments[commentno].likes+=1:this.post[i].comments[commentno].likes-=1;
+      this.posts[i].comments[commentno].commentliked=!this.posts[i].comments[commentno].commentliked,
+      this.posts[i].comments[commentno].commentliked?this.posts[i].comments[commentno].likes+=1:this.posts[i].comments[commentno].likes-=1;
     }
 
 
     replylikeFunction(i:any,commentno:any,replyno:any){
-      this.post[i].comments[commentno].replys[replyno].replyliked=!this.post[i].comments[commentno].replys[replyno].replyliked,
-      this.post[i].comments[commentno].replys[replyno].replyliked?this.post[i].comments[commentno].replys[replyno].likes+=1:this.post[i].comments[commentno].replys[replyno].likes-=1;
+      this.posts[i].comments[commentno].replys[replyno].replyliked=!this.posts[i].comments[commentno].replys[replyno].replyliked,
+      this.posts[i].comments[commentno].replys[replyno].replyliked?this.posts[i].comments[commentno].replys[replyno].likes+=1:this.posts[i].comments[commentno].replys[replyno].likes-=1;
     }
 
     random():number{
