@@ -14,7 +14,7 @@ export class AnnouncementsComponent {
 
 
   random():number{
-    console.log(Math.ceil(Math.random()*10));
+    // console.log(Math.ceil(Math.random()*10));
 return Math.floor((Math.random()*10)/2);
 
 

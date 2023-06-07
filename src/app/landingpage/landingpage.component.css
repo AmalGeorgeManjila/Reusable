@@ -11,11 +11,11 @@
     width: 100%;
     height: 110vh;
     /* margin-top:2vh ; */
-  
+  /* gap: 2%; */
     justify-content: space-evenly;
-    gap: 2%;
+    column-gap: 2%;
 /* background-color: var(--lightGrey); */
-padding: 2%;
+padding-inline: 2%;
 padding-bottom: 10vh;
 align-items: stretch;
 position: fixed;
@@ -28,7 +28,7 @@ app-announcements{
     overflow: scroll;
     border-radius: var(--borderradius);
    height: 80vh;
-    /* padding: 20px; */
+    padding-top: 2%;
 }
 
 app-announcements::-webkit-scrollbar{
@@ -41,6 +41,7 @@ app-profile{
     border-radius: var(--borderradius);
     background-color: #fff;
     /* padding: 20px; */
+    padding-top: 2%;
 }
 app-posts{
     flex: 3;
@@ -52,7 +53,7 @@ app-posts{
     padding-bottom: 15vh;
    
     z-index: 100;
-    
+    padding-top: 2%;
 }
 
 app-posts::-webkit-scrollbar{

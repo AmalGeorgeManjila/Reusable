@@ -98,6 +98,11 @@ flex: 1;
 
     } */
 
+.commentsbox{
+
+    border-left: 1px solid rgba(131, 123, 123, 0.099);
+}
+
     .viewallcomments{
         width: 50%;
         border-radius: 50px;

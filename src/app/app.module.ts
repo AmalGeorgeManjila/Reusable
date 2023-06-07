@@ -8,6 +8,7 @@ import { AnnouncementsComponent } from './landingpage/announcements/announcement
 import { PostsComponent } from './landingpage/posts/posts.component';
 import { ProfileComponent } from './landingpage/profile/profile.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
