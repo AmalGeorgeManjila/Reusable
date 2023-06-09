@@ -1,19 +1,26 @@
-<p>2</p>
+<div class="profilearea ps-4 pe-4 p-2  ">
 
-<p>2</p>
+    <!-- profile banner -->
 
-<p>2</p>
 
-<p>2</p>
+    <div class="profilebanner mt-3 mb-4">
+        <img src="../../../assets/Rectangle 29sonuprofilepic.png" alt="" width="30%" class="profilepic">
+    </div>
+    <div class="text-center"><b>Sonu P NELOJ</b> </div>
+    <div class="text-center text-secondary profileid">@sonupPNELOJ</div>
+    <button class="create_a_post_btn mt-3 w-100">Create a Post <i class="fa-solid fa-pencil ms-2"></i></button>
 
-<p>2</p>
+    <!-- active now -->
+<div class="activenow mt-3">
+    <h3>Active Now <i class="fa-solid fa-wifi ms-3"></i></h3>
+    <div class="active_profiles" >
+        <div class="active_profile_container" *ngFor="let img of activeprofile.slice(0,activeones)">
+            <img src='{{img}}' alt="fsdf" width="100%">
+        </div>
+        <div class="active_profile_container" *ngIf="activeprofile.length>3 && activeones<activeprofile.length" (click)="activeones=activeprofile.length">
+            {{(activeprofile.length-activeones) +" more"}}
+        </div>
+    </div>
+</div>
 
-<p>2</p>
-
-<p>2</p>
-
-<p>2</p>
-
-<p>2</p>
-
-v
+</div>

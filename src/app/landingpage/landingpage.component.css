@@ -39,7 +39,7 @@ app-profile{
     overflow: scroll;
     height: 80vh;
     border-radius: var(--borderradius);
-    background-color: #fff;
+    /* background-color: #fff; */
     /* padding: 20px; */
     padding-top: 2%;
 }

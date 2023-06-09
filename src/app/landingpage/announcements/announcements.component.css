@@ -1,5 +1,5 @@
 .announcementarea{
-    flex: 1;
+    /* flex: 1; */
     border-radius: var(--borderradius);
     background-color: #ffffff;
     overflow: scroll;

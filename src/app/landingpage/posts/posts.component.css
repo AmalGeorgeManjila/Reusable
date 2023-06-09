@@ -118,4 +118,9 @@ flex: 1;
 
         background-color: var(--lightGreen);
         color: #fff;
+        /* outline: none; */
+    }
+
+    .viewallcomments:focus{
+        outline:none
     }
