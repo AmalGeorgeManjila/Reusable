@@ -2,6 +2,9 @@
     /* position: relative; */
     display: grid;
     place-items: center;
+    /* background-color: aqua; */
+    /* padding: 30px; */
+    
 }
 
 .layout{
@@ -24,6 +27,7 @@ top: 90px;
 
 
 app-announcements{
+ 
     flex: 1.5; 
     overflow: scroll;
     border-radius: var(--borderradius);

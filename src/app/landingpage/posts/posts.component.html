@@ -4,15 +4,15 @@
 
 
             <!-- headerpart -->
-
+           
 
             <div class="posthead d-flex">
                 <div class="profiledetails d-flex">
                     <img src="../../../assets/Rectangle 18mathew.png" alt="" width="60" class="me-3">
                     <div class="namebox">
-                        <h5>{{post.name}}</h5>
-                        <p class="hourago">{{post.time}} hrs ago {{post.team?"on ":''}} <span
-                                class="community">{{post.team}}</span>
+                        <h5>{{post.postdetails.name}}</h5>
+                        <p class="hourago">{{post.postdetails.created_at| date:'HH'}} hrs ago {{post.postdetails.community?"on ":''}} <span
+                                class="community">{{post.postdetails.community}}</span>
                         </p>
                     </div>
                 </div>
@@ -23,12 +23,12 @@
 
             <!-- content or post -->
 
-            <div>{{!post.showFull?post.content.substring(200,0):post.content}} <span class="text-secondary"
-                    (click)="post.showFull=!post.showFull" *ngIf="post.content.length>=200">{{post.showFull?"
+            <div>{{post.postdetails.showfull?post.postdetails.content.substring(0,80):post.postdetails.content}} <span class="text-secondary"
+                    (click)="post.postdetails.showfull=!post.postdetails.showfull" *ngIf="post.postdetails.content.length>=80">{{!post.postdetails.showfull?"
                     ...less":"...more"}}</span>
             </div>
 
-            <span class="tags me-1 " *ngFor="let tag of post.tags">#{{tag}}</span>
+            <span class="tags me-1 " *ngFor="let tag of post.postdetails.tags">#{{tag}}</span>
             <hr>
 
 
@@ -38,11 +38,11 @@
             <div class="share_comment_like d-flex text-secondary mb-3">
                 <div class="me-3 " [style.color]="post.liked?'black':'grey'" (click)="likeFunction(i)">
                     <i [ngClass]="post.liked?'fa-solid fa-thumbs-up me-2':'fa-regular fa-thumbs-up  me-2'"></i>
-                    {{post.likes + " likes"}}
+                    {{post.postdetails.likes + " likes"}}
                 </div>
                 <div class="me-3"
                 (click)="post.fullcomment==1?post.fullcomment=post.comments.length:post.fullcomment=1 && post.comments[0].fullreply=1">
-                    <i class="fa-regular fa-comment  me-2"></i> {{post.comments.length + " Comments"}}
+                    <i class="fa-regular fa-comment  me-2"></i> {{post.total_comments + " Comments"}}
                 </div>
                 <div class="me-3">
                     <i class="fa-solid fa-share-nodes  me-2"></i> {{"Share"}}
@@ -64,7 +64,7 @@
 
             <!-- comments -->
 
-            <div class="commentsbox mb-2 " *ngFor="let com of post.comments.slice(0,post.fullcomment), index as j">
+            <div class="commentsbox mb-2 " *ngFor="let com of post.comments, index as j">
 
                 <!-- single comment -->
 
@@ -74,11 +74,11 @@
                         <img src="../../../assets/Ellipse 5sonu.png" alt="">
                     </div>
                     <div class="comment w-100">
-                        <span style="text-transform: capitalize;font-weight: 600;font-size: medium;">{{com.commentname
+                        <span style="text-transform: capitalize;font-weight: 600;font-size: medium;">{{com.user_email
                             + " "}}</span>
                         <span class="text-secondary " style="font-size:smaller ;">{{" "+random() + " Min"}} </span>
                         <br>
-                        <span class="mb-2">{{com.comment}}</span>
+                        <span class="mb-2">{{com.comments}}</span>
 
 
                         <div class="share_comment_like d-flex text-secondary mb-3 mt-2" style="font-size:small ;">
@@ -90,7 +90,7 @@
                             <div class="me-3" (click)="posts[i].comments[j].showreplybutton=!(posts[i].comments[j].showreplybutton);">
                                 <i class="fa-regular fa-comment  me-1"></i> {{"reply"}}
                             </div>
-                            <div class="me-3" *ngIf="posts[i].fullcomment!=1 && post.comments[j].replys.length>=2"
+                            <div class="me-3" *ngIf="posts[i].fullcomment!=1 && post.comments[j].replies.length>=2"
                                 (click)="posts[i].comments[j].fullreply==1?posts[i].comments[j].fullreply=com.replys.length:posts[i].comments[j].fullreply=1">
                                 <b>{{post.comments[j].fullreply==1?"View all replies":"Hide replies"}}</b>
                             </div>
@@ -108,7 +108,7 @@
                         <!-- replys -->
 
 
-                        <div *ngFor="let rep of com.replys.slice(0,post.comments[j].fullreply),index as k" 
+                        <div *ngFor="let rep of com.replies,index as k" 
                             class="d-flex mb-2 w-100">
                             <div>
                                 <img src="../../../assets/Ellipse 5sonu.png" alt="">
@@ -127,13 +127,13 @@
                                             [ngClass]="rep.replyliked?'fa-solid fa-heart me-1':'fa-regular fa-heart  me-1'"></i>
                                         {{rep.likes }}
                                     </div>
-                                    <div class="me-3"  (click)="posts[i].comments[j].replys[k].showreplybutton=!(posts[i].comments[j].replys[k].showreplybutton)">
+                                    <div class="me-3"  (click)="posts[i].comments[j].replies[k].showreplybutton=!(posts[i].comments[j].replies[k].showreplybutton)">
                                         <i class="fa-regular fa-comment  me-1"></i> {{"reply"}}
                                     </div>
 
 
                                 </div>
-                                <div class="commentinput d-flex mb-2" *ngIf="posts[i].comments[j].replys[k].showreplybutton" >
+                                <div class="commentinput d-flex mb-2" *ngIf="posts[i].comments[j].replies[k].showreplybutton" >
                                     <!-- <div class="commentimg"><img src="../../../assets/Ellipse 5sonu.png" alt=""></div> -->
                                     <form class="inputcomment" [formGroup]="replyForm" (ngSubmit)="submitReply(i,j,rep.replyname,k)">
                                         <!-- <form > -->
