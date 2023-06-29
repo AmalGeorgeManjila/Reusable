@@ -107,30 +107,33 @@ isolation: isolate;
 overflow: hidden;
 }
 
-/* .eventslist:before{
-
+.eventslist:before{
+display: grid;
+place-items: center;
     content: '';
-    height: 90%;
+    height: 120px;
     aspect-ratio: 1;
     border-radius: 50%;
-    background-color: #ffffff21;
+    background-color: #ddd4d452;
     position: absolute;
     z-index: 1;
-    top: -10%;
-left: 10%;
+    /* top: -10%; */
+left: -15%;
 }
 .eventslist:after{
-
+    display: grid;
+    place-items: center;
     content: '';
-    height: 130%;
+    height: 170px;
     aspect-ratio: 1;
     border-radius: 50%;
-    background-color: #ffffff21;
+    background-color: #ddd4d452;
     position: absolute;
-    z-index: 1;
-    left: -15%;
+    /* /* z-index: 1; */
+    left: -20%; 
+   
 
-} */
+}
 
 .upcomingevents{
     flex: 3;
@@ -178,6 +181,6 @@ left: 10%;
     border-radius: 50%;
     display: grid;
     place-items: center;
-    background-color: #ffffff38;
+    background-color: #fffafa23;
     color: #fff;
 }

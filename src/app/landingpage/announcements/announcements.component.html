@@ -1,14 +1,17 @@
 <div class="announcementarea ps-4 pe-4 p-2">
     <div class="subdivisions">
         <h3 class="mb-4 mt-1">Announcements <i class="fa-solid fa-bullhorn ms-3"></i></h3>
-        <div class="content">
-            <div class="h5">TNP India</div>
-            <span>5 mins ago</span>
-            <div class="h6">{{!showFull?contentstring.substring(100,0):contentstring}} <span class="text-light"
-                    (click)="showFull=!showFull" *ngIf="contentstring.length>=100">{{showFull?"
+
+        <div class="content mt-4" *ngFor="let announcement of announcementdata">
+            <div class="h5">{{announcement.community}}</div>
+            <span>{{announcement.created_at|date:'dd-MM-yyyy'}}</span>
+            <div class="h6 mt-2">{{!showFull?announcement.contentString.substring(0,100):announcement.contentString}} <span
+                    class="text-light" (click)="showFull=!showFull"
+                    *ngIf="announcement.contentString.length>=100">{{showFull?"
                     ...less":"...more"}}</span>
             </div>
         </div>
+
 
     </div>
 
@@ -43,17 +46,18 @@
     </div>
 
 
-<!-- upcoming events -->
+    <!-- upcoming events -->
 
     <div class="subdivisions">
         <h3 class="mb-4 mt-1"> Upcoming Events <i class="fa-regular fa-calendar ms-3"></i></h3>
 
         <div class="eventslist mt-4" [style.background]="color[random()]" *ngFor="let events of Upcomingeventdetails">
             <div class="upcomingevents">
-                <div class="eventname">{{events.community}} <br>  <span> {{events.content}}</span></div>
+                <div class="eventname">{{events.community}} <br> <span> {{events.content}}</span></div>
 
                 <div class="eventdesc">{{!showFull?events.contentString.substring(0,30):events.contentString}} <span
-                        class="text-light" (click)="showFull=!showFull" *ngIf="events.contentString.length>=100">{{showFull?"
+                        class="text-light" (click)="showFull=!showFull"
+                        *ngIf="events.contentString.length>=30">{{showFull?"
                         ...less":"...more"}}</span>
                 </div>
             </div>

@@ -22,15 +22,23 @@ export class PostsComponent implements OnInit {
 
   differenceindate:any;
   date:any;
-  
+  height_of_the_page:any;
+  current_page_height:any;
   constructor(private fb: FormBuilder,private postservice:PostsServiceService) { }
 
-
+ 
   posts:any=[];
 
   ngOnInit(): void {
- 
-    this.getFeedsandPost()
+   
+    this.getFeedsandPost();
+
+    for(let i=0;i<this.posts.length;i++){
+      console.log(this.posts[i].fullcomment);
+      
+    }
+
+    
   }
 
   // posts: any = [{
@@ -445,7 +453,8 @@ export class PostsComponent implements OnInit {
      this.postservice.getPostDetails().subscribe((data:any)=>{
 
       this.posts=data;
-      console.log(this.posts);
+      this.posts.map((post:any)=>post['pagenumber']=-1);
+      // console.log(this.posts);
     })
 
    
@@ -453,6 +462,50 @@ export class PostsComponent implements OnInit {
   }
 
 
+
+  getcomments(e:any){
+
+
+
+    // this.postservice.getcommentsfull().subscribe((data:any)=>{
+    //   console.log(data);
+      
+    // })
+
+    console.log("hi");
+   
+  }
+
+  getcommentsfull(event:any,i:any){
+    
+    // this.posts.filter((post:any)=>post.postdetails.id==i)[0]['pagenumber']=this.pagenumber;
+    this.posts.filter((post:any)=>post.postdetails.id==i)[0]['pagenumber']+=1;
+ this.postservice.getcommentsfull(i,  this.posts.filter((post:any)=>post.postdetails.id==i)[0]['pagenumber']).subscribe((data:any)=>{
+  for( var d=0;d<data.length;d++){
+  console.log(this.posts.postdetails);
+  
+    
+    this.posts.filter((post:any)=>post.postdetails.id==i)[0].comments.push(data[d])
+    console.log(this.posts.filter((post:any)=>post.postdetails.id==i)[0].comments);
+  }
+
+  
+ })
+
+    // this.height_of_the_page = event.target;
+    
+    //     this.current_page_height = this.height_of_the_page.scrollTop + this.height_of_the_page.offsetHeight;
+    //     console.log(this.current_page_height);
+        
+    
+        // let percentage = (this.current_page_height / this.height_of_the_page.scrollHeight) * 100;
+    
+        // if (percentage >= 75 && !this.is_loading && this.products_list.length < this.total_records) {
+    
+        //   this.scroll_page_number++;
+    
+        //   this.is_loading = true;
+  }
 
 
 }

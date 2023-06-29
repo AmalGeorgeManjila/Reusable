@@ -16,4 +16,10 @@ export class AnnouncementserviceService {
        return this.http.get('http://192.168.2.6:4000/upcoming')
     }
 
+
+    getAnnouncementsData(){
+
+      return this.http.get('http://192.168.2.6:4000/Announcement')
+    }
+
 }

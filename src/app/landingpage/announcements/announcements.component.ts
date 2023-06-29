@@ -9,8 +9,8 @@ import { JsonPipe } from '@angular/common';
 })
 export class AnnouncementsComponent implements OnInit {
   showFull:any=false;
-
-  Upcomingeventdetails:any;
+  announcementdata:any=[];
+  Upcomingeventdetails:any=[];
   contentstring: String = "lorem nhjakshfka sd fsasd asghikaghsu sdf sdfsdfsdfsfsahis ajhfua sfuha ajhsuiy asjhga ahfua sfdhauiyf ashdfahs akujhsgdu adhu"
   color:any=["steelblue","blueviolet","firebrick","teal","rose","hotpink"]
 month:string[]=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -20,7 +20,8 @@ constructor(private announcds:AnnouncementserviceService){}
 
 
 ngOnInit(): void {
-  this.getUpcomingEvents()
+  this.getUpcomingEvents();
+  this.getAnnouncements();
 }
 
   random():number{
@@ -42,11 +43,13 @@ return Math.floor((Math.random()*10)/2);
       this.Upcomingeventdetails=data;
    
     })
+ }
 
-    
-    
-
-  }
+ getAnnouncements(){
+  this.announcds.getAnnouncementsData().subscribe((data:any)=>{
+    this.announcementdata=data;
+  })
+ }
 
 
 }

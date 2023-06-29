@@ -1,17 +1,19 @@
-<div class="feed ">
-    <div class="post p-4 mb-4 " *ngFor="let  post of posts, index as i">
+<div class="feed " >
+   
+    <div class="post p-4 mb-4 " *ngFor="let  post of posts, index as i" >
         <div class="postdetails">
 
 
             <!-- headerpart -->
-           
+
 
             <div class="posthead d-flex">
                 <div class="profiledetails d-flex">
                     <img src="../../../assets/Rectangle 18mathew.png" alt="" width="60" class="me-3">
                     <div class="namebox">
                         <h5>{{post.postdetails.name}}</h5>
-                        <p class="hourago">{{post.postdetails.created_at| date:'HH'}} hrs ago {{post.postdetails.community?"on ":''}} <span
+                        <p class="hourago">{{post.postdetails.created_at| date:'HH'}} hrs ago
+                            {{post.postdetails.community?"on ":''}} <span
                                 class="community">{{post.postdetails.community}}</span>
                         </p>
                     </div>
@@ -23,8 +25,9 @@
 
             <!-- content or post -->
 
-            <div>{{post.postdetails.showfull?post.postdetails.content.substring(0,80):post.postdetails.content}} <span class="text-secondary"
-                    (click)="post.postdetails.showfull=!post.postdetails.showfull" *ngIf="post.postdetails.content.length>=80">{{!post.postdetails.showfull?"
+            <div>{{post.postdetails.showfull?post.postdetails.content.substring(0,80):post.postdetails.content}} <span
+                    class="text-secondary" (click)="post.postdetails.showfull=!post.postdetails.showfull"
+                    *ngIf="post.postdetails.content.length>=80">{{!post.postdetails.showfull?"
                     ...less":"...more"}}</span>
             </div>
 
@@ -41,7 +44,7 @@
                     {{post.postdetails.likes + " likes"}}
                 </div>
                 <div class="me-3"
-                (click)="post.fullcomment==1?post.fullcomment=post.comments.length:post.fullcomment=1 && post.comments[0].fullreply=1">
+                    (click)="post.fullcomment==1?post.fullcomment=post.comments.length:post.fullcomment=1 && post.comments[0].fullreply=1">
                     <i class="fa-regular fa-comment  me-2"></i> {{post.total_comments + " Comments"}}
                 </div>
                 <div class="me-3">
@@ -56,7 +59,7 @@
                 <div class="commentimg"><img src="../../../assets/Ellipse 5sonu.png" alt=""></div>
                 <form class="inputcomment" [formGroup]="CommentForm" (ngSubmit)="submitComment(i)">
                     <!-- <form > -->
-                        <input type="text" placeholder="Write your comment" formControlName="comment">
+                    <input type="text" placeholder="Write your comment" formControlName="comment">
                     <!-- </form> -->
                 </form>
             </div>
@@ -64,7 +67,7 @@
 
             <!-- comments -->
 
-            <div class="commentsbox mb-2 " *ngFor="let com of post.comments, index as j">
+            <div class="commentsbox mb-2 " *ngFor="let com of post.comments, index as j" (scroll)="getcommentsfull($event,post.postdetails.id)">
 
                 <!-- single comment -->
 
@@ -87,7 +90,8 @@
                                     [ngClass]="com.commentliked?'fa-solid fa-heart me-1':'fa-regular fa-heart  me-1'"></i>
                                 {{com.likes }}
                             </div>
-                            <div class="me-3" (click)="posts[i].comments[j].showreplybutton=!(posts[i].comments[j].showreplybutton);">
+                            <div class="me-3"
+                                (click)="posts[i].comments[j].showreplybutton=!(posts[i].comments[j].showreplybutton);">
                                 <i class="fa-regular fa-comment  me-1"></i> {{"reply"}}
                             </div>
                             <div class="me-3" *ngIf="posts[i].fullcomment!=1 && post.comments[j].replies.length>=2"
@@ -96,11 +100,12 @@
                             </div>
 
                         </div>
-                        <div class="commentinput d-flex mb-2"  *ngIf="posts[i].comments[j].showreplybutton" >
+                        <div class="commentinput d-flex mb-2" *ngIf="(posts[i].comments[j].showreplybutton)">
                             <!-- <div class="commentimg"><img src="../../../assets/Ellipse 5sonu.png" alt=""></div> -->
-                            <form class="inputcomment" [formGroup]="replyForm" (ngSubmit)="submitReply(i,j,com.commentname)">
+                            <form class="inputcomment" [formGroup]="replyForm"
+                                (ngSubmit)="submitReply(i,j,com.commentname)">
                                 <!-- <form > -->
-                                    <input type="text" placeholder="Reply" formControlName="reply">
+                                <input type="text" placeholder="Reply" formControlName="reply">
                                 <!-- </form> -->
                             </form>
                         </div>
@@ -108,8 +113,7 @@
                         <!-- replys -->
 
 
-                        <div *ngFor="let rep of com.replies,index as k" 
-                            class="d-flex mb-2 w-100">
+                        <div *ngFor="let rep of com.replies,index as k" class="d-flex mb-2 w-100">
                             <div>
                                 <img src="../../../assets/Ellipse 5sonu.png" alt="">
                             </div>
@@ -127,17 +131,20 @@
                                             [ngClass]="rep.replyliked?'fa-solid fa-heart me-1':'fa-regular fa-heart  me-1'"></i>
                                         {{rep.likes }}
                                     </div>
-                                    <div class="me-3"  (click)="posts[i].comments[j].replies[k].showreplybutton=!(posts[i].comments[j].replies[k].showreplybutton)">
+                                    <div class="me-3"
+                                        (click)="posts[i].comments[j].replies[k].showreplybutton=!(posts[i].comments[j].replies[k].showreplybutton)">
                                         <i class="fa-regular fa-comment  me-1"></i> {{"reply"}}
                                     </div>
 
 
                                 </div>
-                                <div class="commentinput d-flex mb-2" *ngIf="posts[i].comments[j].replies[k].showreplybutton" >
+                                <div class="commentinput d-flex mb-2"
+                                    *ngIf="!(posts[i].comments[j].replies[k].showreplybutton)">
                                     <!-- <div class="commentimg"><img src="../../../assets/Ellipse 5sonu.png" alt=""></div> -->
-                                    <form class="inputcomment" [formGroup]="replyForm" (ngSubmit)="submitReply(i,j,rep.replyname,k)">
+                                    <form class="inputcomment" [formGroup]="replyForm"
+                                        (ngSubmit)="submitReply(i,j,rep.replyname,k)">
                                         <!-- <form > -->
-                                            <input type="text" placeholder="Reply" formControlName="reply">
+                                        <input type="text" placeholder="Reply" formControlName="reply">
                                         <!-- </form> -->
                                     </form>
                                 </div>
@@ -157,7 +164,13 @@
 
         </div>
         <button class="viewallcomments"
-            (click)="post.fullcomment==1?post.fullcomment=post.comments.length:post.fullcomment=1 && post.comments[0].fullreply=1">{{post.fullcomment!=1?"View less":"View all comments"}}</button>
+        *ngIf=" post.comments.length<post.total_comments"    (click)="getcommentsfull($event,post.postdetails.id)" >
+            <!-- (click)="post.postdetails.fullcomment==1?post.postdetails.fullcomment=0:post.postdetails.fullcomment=1 && post.comments[0].fullreply=1" -->
+
+        
+
+           View all comments
+        </button>
 
 
     </div>
