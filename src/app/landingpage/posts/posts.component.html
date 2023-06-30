@@ -57,11 +57,12 @@
 
             <div class="commentinput d-flex mb-2">
                 <div class="commentimg"><img src="../../../assets/Ellipse 5sonu.png" alt=""></div>
-                <form class="inputcomment" [formGroup]="CommentForm" (ngSubmit)="submitComment(i)">
+                <form class="inputcomment" [formGroup]="CommentForm" (ngSubmit)="submitComment(post.postdetails.id)">
                     <!-- <form > -->
                     <input type="text" placeholder="Write your comment" formControlName="comment">
                     <!-- </form> -->
                 </form>
+                <i class="fa-solid fa-paper-plane" (click)="submitComment(post.postdetails.id)"></i>
             </div>
 
 
@@ -94,21 +95,20 @@
                                 (click)="posts[i].comments[j].showreplybutton=!(posts[i].comments[j].showreplybutton);">
                                 <i class="fa-regular fa-comment  me-1"></i> {{"reply"}}
                             </div>
-                            <div class="me-3" 
-                                (click)="getrepliesfull(com.id)">
-                                {{com.id}}
-                                <b>View all replies</b>
-                            </div>
+                          
 
                         </div>
-                        <div class="commentinput d-flex mb-2" *ngIf="(posts[i].comments[j].showreplybutton)">
+                        <div class="commentinput d-flex mb-2 " *ngIf="(posts[i].comments[j].showreplybutton)">
                             <!-- <div class="commentimg"><img src="../../../assets/Ellipse 5sonu.png" alt=""></div> -->
                             <form class="inputcomment" [formGroup]="replyForm"
-                                (ngSubmit)="submitReply(i,j,com.commentname)">
+                                (ngSubmit)="submitReply(com.id)">
                                 <!-- <form > -->
                                 <input type="text" placeholder="Reply" formControlName="reply">
+
+                                
                                 <!-- </form> -->
                             </form>
+                            <i class="fa-solid fa-paper-plane" (click)="submitReply(com.id)"></i>
                         </div>
 
                         <!-- replys -->
@@ -120,17 +120,17 @@
                             </div>
                             <div class="comment ms-2 w-100">
                                 <span
-                                    style="text-transform: capitalize;font-weight: 600;font-size: medium;">{{rep.replyname
+                                    style="text-transform: capitalize;font-weight: 600;font-size: medium;">{{rep.user_email
                                     + " "}}</span>
                                 <span class="text-secondary " style="font-size:smaller ;">{{" "+random() + " Min"}}
                                 </span><br>
-                                <span><b>{{rep.replyto?"@"+ rep.replyto +" ":''}}</b>{{rep.reply}}</span>
+                                <span><b>{{rep.replyname?"@"+ rep.replyname +" ":''}}</b>{{rep.reply}}</span>
                                 <div class="share_comment_like d-flex text-secondary mb-3 mt-2"
                                     style="font-size:small ;">
                                     <div class="me-3 " [style.color]="rep.replyliked?'#8cbb1e':'grey'">
                                         <i (click)="replylikeFunction(i,j,k)"
                                             [ngClass]="rep.replyliked?'fa-solid fa-heart me-1':'fa-regular fa-heart  me-1'"></i>
-                                        {{rep.likes }}
+                                        {{rep.likes}}
                                     </div>
                                     <div class="me-3"
                                         (click)="posts[i].comments[j].replies[k].showreplybutton=!(posts[i].comments[j].replies[k].showreplybutton)">
@@ -143,14 +143,23 @@
                                     *ngIf="!(posts[i].comments[j].replies[k].showreplybutton)">
                                     <!-- <div class="commentimg"><img src="../../../assets/Ellipse 5sonu.png" alt=""></div> -->
                                     <form class="inputcomment" [formGroup]="replyForm"
-                                        (ngSubmit)="submitReply(i,j,rep.replyname,k)">
+                                        (ngSubmit)="submitReply(com.id,rep.replyname)">
                                         <!-- <form > -->
                                         <input type="text" placeholder="Reply" formControlName="reply">
+                                        
                                         <!-- </form> -->
                                     </form>
+                                    <i class="fa-solid fa-paper-plane" (click)="submitReply(com.id,rep.replyname)"></i>
                                 </div>
+
+                                <div class="me-3 text-secondary" *ngIf="k==com.replies.length-1"
+                                (click)="getrepliesfull(com.id)">
+                                
+                                <b>{{com.id}} load more replies</b>
+                            </div>
                             </div>
                         </div>
+                        
 
                     </div>
 

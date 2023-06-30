@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { PostsServiceService } from './posts-service.service';
+import { compileComponentFromMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-posts',
@@ -24,6 +25,8 @@ export class PostsComponent implements OnInit {
   date:any;
   height_of_the_page:any;
   current_page_height:any;
+  commentfromuser:any;
+  replyfromuser:any;
   constructor(private fb: FormBuilder,private postservice:PostsServiceService) { }
 
  
@@ -37,6 +40,8 @@ export class PostsComponent implements OnInit {
       console.log(this.posts[i].fullcomment);
       
     }
+
+    localStorage.setItem('user',"sonupneloj@tnpconsultants.com");
 
     
   }
@@ -410,40 +415,31 @@ export class PostsComponent implements OnInit {
 
 
   submitComment(postno: any) {
-    this.posts[postno].comments.push(
 
-      {
-        "comment": this.CommentForm.value.comment,
-        "commentname": "Sonu",
-        "likes": 0,
-        "commentliked": false,
-        "fullreply": 1,
-        "replys": []
-      }
 
-    )
+    this.commentfromuser=this.CommentForm.value.comment;
+
+
+console.log(this.commentfromuser,postno);
+this.postservice.postComment(postno,this.commentfromuser).subscribe((data:any)=>
+console.log(data)
+);
 
     this.CommentForm.reset()
     
 
   }
 
-  submitReply(postno: any, commentno: any,replyingto: any,replyno?:any ) {
-    this.posts[postno].comments[commentno].replys.push(
+  submitReply(comments_id:any,replyname?:string) {
+ 
 
-      {
-        "reply": this.replyForm.value.reply,
-        "replyname": "sonu",
-        "replyliked": false,
-        "likes": 0,
-        "replyto": replyingto
-      }
-
-    )
+     this.replyfromuser= this.replyForm.value.reply,
+      this.postservice.postReply(comments_id,this.replyfromuser,replyname).subscribe((data:any)=>
+      console.log(data)
+      )
 
     this.replyForm.reset()
-    this.posts[postno].comments[commentno].showreplybutton=false;
-    this.posts[postno].comments[commentno].replys[replyno].showreplybutton=false;
+
 
   }
 

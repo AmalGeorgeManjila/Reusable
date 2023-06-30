@@ -55,14 +55,38 @@ color: var(--lightlightgrey);
 
 .commentinput{
     display: flex;
-    gap: 2%;
+    gap: 5;
     width: 100%;
+    align-items: stretch;
+   border-radius: 5px;
     /* background-color: aquamarine; */
+    background-color: var(--lightGrey);
+    overflow: hidden;
+   
+}
+
+.commentimg{
+    display: grid;
+    place-items: center;
 }
 
 .commentinput>.inputcomment{
-flex: 1;
+flex: 16;
 
+}
+
+.commentinput>i{
+    display: grid;
+    place-items: center;
+  padding: 10px;
+  flex: 1;
+  color: var(--lightGreen);
+  background-color: var(--lightGreenShade);
+}
+
+.commentinput>i:hover{
+    background-color: var(--lightGreen);
+    color: #fff;
 }
 
 .commentinput>.inputcomment>input{
@@ -70,7 +94,8 @@ flex: 1;
     border-radius: 5px;
     outline: none;
     border: none;
-    background-color: var(--lightGrey);
+    /* background-color: var(--lightGrey); */
+    background-color: transparent;
     padding: 5px;
 
     }
@@ -97,6 +122,8 @@ flex: 1;
         
 
     } */
+
+ 
 
 .commentsbox{
 

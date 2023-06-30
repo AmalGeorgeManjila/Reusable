@@ -114,11 +114,14 @@ place-items: center;
     height: 120px;
     aspect-ratio: 1;
     border-radius: 50%;
-    background-color: #ddd4d452;
+    background-color: #ddd4d45d;
     position: absolute;
     z-index: 1;
     /* top: -10%; */
 left: -15%;
+opacity: 0;
+scale: 0;
+animation: waterbubble 2s linear 1s  infinite forwards;
 }
 .eventslist:after{
     display: grid;
@@ -127,12 +130,27 @@ left: -15%;
     height: 170px;
     aspect-ratio: 1;
     border-radius: 50%;
-    background-color: #ddd4d452;
+    background-color: #ddd4d45d;
     position: absolute;
     /* /* z-index: 1; */
-    left: -20%; 
+    left: -25%; 
+    opacity: 0;
+    scale: 0;
+    animation: waterbubble 2s linear infinite forwards;
    
 
+}
+
+@keyframes waterbubble{
+
+    80%{
+        opacity: 1;
+        scale: 1;
+    }
+  100%{
+    opacity: 0;
+    scale: 1;
+  }
 }
 
 .upcomingevents{
