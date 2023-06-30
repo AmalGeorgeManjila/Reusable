@@ -454,6 +454,7 @@ export class PostsComponent implements OnInit {
 
       this.posts=data;
       this.posts.map((post:any)=>post['pagenumber']=-1);
+      this.posts.map((post:any)=>post.comments.map((comment:any)=>comment['pagenumber']=-1));
       // console.log(this.posts);
     })
 
@@ -463,20 +464,11 @@ export class PostsComponent implements OnInit {
 
 
 
-  getcomments(e:any){
+ 
 
+  // retrieving all comments
 
-
-    // this.postservice.getcommentsfull().subscribe((data:any)=>{
-    //   console.log(data);
-      
-    // })
-
-    console.log("hi");
-   
-  }
-
-  getcommentsfull(event:any,i:any){
+  getcommentsfull(i:any){
     
     // this.posts.filter((post:any)=>post.postdetails.id==i)[0]['pagenumber']=this.pagenumber;
     this.posts.filter((post:any)=>post.postdetails.id==i)[0]['pagenumber']+=1;
@@ -492,19 +484,32 @@ export class PostsComponent implements OnInit {
   
  })
 
-    // this.height_of_the_page = event.target;
+  
+  }
+
+
+  // retrieving all replies 
+
+
+  getrepliesfull(commentid:any){
+    this.posts.filter((post:any)=>post.comments.find((data:any)=>data.id===commentid && data.postdetails_id===post.postdetails.id))[0].comments.filter((data:any)=>data.id===commentid)[0]['pagenumber']+=1;
+    console.log(this.posts.filter((post:any)=>post.comments.find((data:any)=>data.id===commentid && data.postdetails_id===post.postdetails.id)));
+    console.log(commentid);
     
-    //     this.current_page_height = this.height_of_the_page.scrollTop + this.height_of_the_page.offsetHeight;
-    //     console.log(this.current_page_height);
+    
+    this.postservice.getrepliesfull(commentid,this.posts.filter((post:any)=>post.comments.find((data:any)=>data.id===commentid && data.postdetails_id===post.postdetails.id))[0].comments.filter((data:any)=>data.id===commentid)[0]['pagenumber']).subscribe((data:any)=>{
+      for( var d=0;d<data.length;d++){
+  
+      
         
+        this.posts.filter((post:any)=>post.comments.find((data:any)=>data.id===commentid && data.postdetails_id===post.postdetails.id))[0].comments.filter((data:any)=>data.id===commentid)[0].replies.push(data[d])
+        
+      }
     
-        // let percentage = (this.current_page_height / this.height_of_the_page.scrollHeight) * 100;
+      
+     })
     
-        // if (percentage >= 75 && !this.is_loading && this.products_list.length < this.total_records) {
-    
-        //   this.scroll_page_number++;
-    
-        //   this.is_loading = true;
+
   }
 
 

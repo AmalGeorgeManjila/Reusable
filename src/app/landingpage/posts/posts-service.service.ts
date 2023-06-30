@@ -8,6 +8,7 @@ export class PostsServiceService {
 
   constructor(private http: HttpClient) { }
 
+// retrieving all data posts 
 
 getPostDetails(){
 
@@ -15,8 +16,17 @@ getPostDetails(){
 }
 
 
+// retieving all comments
+
 getcommentsfull(id:any,pagenumber:any){
   return this.http.get(`http://192.168.2.6:4000/comments/${id}?limit=10&pageNumber=${pagenumber}`)
+}
+
+// retrieving all comments
+
+getrepliesfull(commentid:any,pagenumber:any){
+
+  return this.http.get(`http://192.168.2.6:4000/replies/${commentid}?limit=10&pageNumber=${pagenumber}`)
 }
 
 }

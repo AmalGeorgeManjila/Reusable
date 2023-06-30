@@ -67,7 +67,7 @@
 
             <!-- comments -->
 
-            <div class="commentsbox mb-2 " *ngFor="let com of post.comments, index as j" (scroll)="getcommentsfull($event,post.postdetails.id)">
+            <div class="commentsbox mb-2 " *ngFor="let com of post.comments, index as j">
 
                 <!-- single comment -->
 
@@ -94,9 +94,10 @@
                                 (click)="posts[i].comments[j].showreplybutton=!(posts[i].comments[j].showreplybutton);">
                                 <i class="fa-regular fa-comment  me-1"></i> {{"reply"}}
                             </div>
-                            <div class="me-3" *ngIf="posts[i].fullcomment!=1 && post.comments[j].replies.length>=2"
-                                (click)="posts[i].comments[j].fullreply==1?posts[i].comments[j].fullreply=com.replys.length:posts[i].comments[j].fullreply=1">
-                                <b>{{post.comments[j].fullreply==1?"View all replies":"Hide replies"}}</b>
+                            <div class="me-3" 
+                                (click)="getrepliesfull(com.id)">
+                                {{com.id}}
+                                <b>View all replies</b>
                             </div>
 
                         </div>
@@ -164,7 +165,7 @@
 
         </div>
         <button class="viewallcomments"
-        *ngIf=" post.comments.length<post.total_comments"    (click)="getcommentsfull($event,post.postdetails.id)" >
+        *ngIf=" post.comments.length<post.total_comments"    (click)="getcommentsfull(post.postdetails.id)" >
             <!-- (click)="post.postdetails.fullcomment==1?post.postdetails.fullcomment=0:post.postdetails.fullcomment=1 && post.comments[0].fullreply=1" -->
 
         
