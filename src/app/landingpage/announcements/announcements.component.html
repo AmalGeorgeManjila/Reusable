@@ -51,7 +51,8 @@
     <div class="subdivisions">
         <h3 class="mb-4 mt-1"> Upcoming Events <i class="fa-regular fa-calendar ms-3"></i></h3>
 
-        <div class="eventslist mt-4" [style.background]="color[random()]" *ngFor="let events of Upcomingeventdetails">
+        <div class="eventslist mt-4" [style.background]="color[0]" *ngFor="let events of Upcomingeventdetails">
+          <!-- random() -->
             <div class="upcomingevents">
                 <div class="eventname">{{events.community}} <br> <span> {{events.content}}</span></div>
 

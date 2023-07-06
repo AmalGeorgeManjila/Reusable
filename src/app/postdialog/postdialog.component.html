@@ -1,0 +1,46 @@
+<div class="formbox" (click)="closedialog()"></div>
+<div class="main">
+    <button (click)="closedialog()"><i class=" fa-solid fa-close fa-2x"></i></button>
+    <h1>Create Post</h1>
+    <div class="group">
+        <form [formGroup]="Createpost" class="form-label">
+
+            <div class="text">
+                <label>Content</label>&nbsp;&nbsp;<br>
+
+                <!-- <input type="text" name="post" class="text1" placeholder="Write a post" formControlName="title"aria-label="Username" aria-describedby="basic-addon1"><br><br> -->
+                <textarea class="form-control" aria-label="With textarea" formControlName="content"></textarea>
+                <hr>
+
+                <label>Communities</label>&nbsp;<br>
+                <input type="text" class="form-control" placeholder="" aria-label="Username"
+                    aria-describedby="basic-addon1" formControlName="community">
+                <!-- <input type="text" name="post" class="text1"placeholder="Write a post" formControlName="title"> -->
+                <hr>
+
+
+                <label>Add Tags</label><br>
+                <div class="col-auto d-flex button">
+                    <label for="inputPassword2"></label>
+                    <input type="text" class="ps-2 border border-none" id="inputPassword2" placeholder="add tags"
+                        formControlName="tags">
+                    <button type="button" (click)="addtags()">Add</button>
+                    
+                </div>
+                <div *ngFor="let i of tagarray,let index as k" class="tagarray" ><div>{{i}}</div></div>
+                <!-- <div class="tags">
+                <input type="text" name="tags" class="text1"placeholder="Create tags" formControlName="tags">&nbsp;&nbsp;
+                <button type="button" (click)="addtags()" class="btn btn-white">Add</button>
+                {{tagarray}}
+            </div> -->
+
+                <!-- <div class="input-group">
+                <span class="input-group-text">With textarea</span>
+                <textarea class="form-control" aria-label="With textarea"></textarea>
+              </div> -->
+            </div>
+           
+            <button type="button" class=" w-75 mt-3   submit" (click)="submitPost()">Submit</button>
+        </form>
+    </div>
+</div>

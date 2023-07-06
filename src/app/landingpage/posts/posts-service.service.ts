@@ -63,4 +63,9 @@ postReply(comments_id:any,reply:string,replyname:any){
   }
   
 
+  postCreate(body:any){
+    return this.http.post("http://192.168.2.6:4000/post",body)
+  }
+
+
 }

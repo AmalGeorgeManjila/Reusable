@@ -24,8 +24,8 @@ ngOnInit(): void {
   this.getAnnouncements();
 }
 
-  random():number{
-    // console.log(Math.ceil(Math.random()*10));
+  random(){
+    console.log(Math.ceil(Math.random()*10));
 return Math.floor((Math.random()*10)/2);
 
 

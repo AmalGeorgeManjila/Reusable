@@ -88,3 +88,6 @@ background-color: var(--lightGrey);
 display: grid;
 place-items: center;
 }
+.dialog-css{
+    background-color: bisque;
+}
