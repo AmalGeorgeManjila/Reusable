@@ -16,6 +16,7 @@ import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from "@
 import { BrowserCacheLocation, InteractionType, PublicClientApplication } from "@azure/msal-browser";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { SpinnerComponent } from './spinner/spinner.component';
+import { LoaderInterceptor } from './loader.interceptor';
 const isIE =
   window.navigator.userAgent.indexOf("MSIE ") > -1 ||
   window.navigator.userAgent.indexOf("Trident/") > -1;
@@ -93,7 +94,16 @@ const isIE =
    
          multi: true,
    
-       },MsalGuard
+       },MsalGuard,
+       {
+   
+        provide: HTTP_INTERCEPTORS,
+  
+        useClass: LoaderInterceptor,
+  
+        multi: true,
+  
+      }
   ],
   bootstrap: [AppComponent,MsalRedirectComponent]
 })

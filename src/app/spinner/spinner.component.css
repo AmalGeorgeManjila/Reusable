@@ -1,5 +1,5 @@
 .body{
-    background-color: #252525d0;
+    background-color: #252525e8;
     display: grid;
     place-items: center;
     height: 100vh;
@@ -11,9 +11,9 @@
 .parent{
 
     /* background-color: aquamarine; */
-    height:150px;
+    height:80px;
     aspect-ratio: 1;
-    animation: load 1s linear infinite ;
+    animation: load .5s linear infinite ;
 }
 
 
