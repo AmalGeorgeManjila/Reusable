@@ -14,7 +14,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PostdialogComponent } from './postdialog/postdialog.component';
 import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from "@azure/msal-angular";
 import { BrowserCacheLocation, InteractionType, PublicClientApplication } from "@azure/msal-browser";
-
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { SpinnerComponent } from './spinner/spinner.component';
 const isIE =
   window.navigator.userAgent.indexOf("MSIE ") > -1 ||
   window.navigator.userAgent.indexOf("Trident/") > -1;
@@ -27,7 +28,8 @@ const isIE =
     PostsComponent,
     ProfileComponent,
     LandingpageComponent,
-    PostdialogComponent
+    PostdialogComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,7 @@ const isIE =
     FormsModule,
     HttpClientModule,
     MatDialogModule,
+    MatToolbarModule,
     MsalModule.forRoot(new PublicClientApplication(
 
       {
@@ -81,6 +84,7 @@ const isIE =
     })
   ],
   providers: [
+   
     {
    
          provide: HTTP_INTERCEPTORS,

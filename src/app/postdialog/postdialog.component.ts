@@ -40,26 +40,27 @@ this.Createpost.patchValue({tags:''})
 }
 submitPost(){
  const created_at=new Date();
- const owner_email=localStorage.getItem('user')
+ const usermail=localStorage.getItem('usermail')
+ const username=localStorage.getItem('username')
   const body={
     "created_at": created_at,
     "content": this.Createpost.value.content,
     "team": "string",
-    "name": "Sonu",
+    "name": username,
     "tags":  this.tagarray
     ,
     "showfull": true,
     "viewallComments": true,
     "fullcomment": 0,
     "likes": 0,
-    "owner_email":owner_email ,
+    "owner_email":usermail ,
     "community":  this.Createpost.value.community
   }
   this.ps.postCreate(body).subscribe((data:any)=>{
     console.log(data);
     
   });
-  this.ps.getPostDetails;
+  // this.ps.getPostDetails;
     console.log(body);
   this.closedialog()
 }

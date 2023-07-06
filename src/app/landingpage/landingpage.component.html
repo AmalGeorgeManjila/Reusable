@@ -1,7 +1,18 @@
-<div class="alllayout">
+<div class="alllayout" >
+    <!-- <mat-toolbar color="primary"> -->
+     <!-- {{profile.givenName}}  {{profile.surname}}     -->
+        <!-- <div class="toolbar-spacer"></div> -->
+      
+        <!-- <a mat-button [routerLink]="['profile']">Profile</a> -->
+      
+        <!-- <button mat-raised-button (click)="login()">Login</button>-->
+        <!-- <button  (click)="logout()" style="z-index: 100;"> Logout</button>  -->
+      
+      <!-- </mat-toolbar> -->
+     
     <div class="layout">
         <app-announcements></app-announcements>
-        <app-posts></app-posts>
+        <app-posts (scroll)="scrollfeed($event)" ></app-posts>
         <app-profile></app-profile>
         <!-- <app-announcements></app-announcements> -->
 

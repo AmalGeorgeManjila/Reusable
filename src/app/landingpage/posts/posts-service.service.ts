@@ -10,9 +10,9 @@ export class PostsServiceService {
 
 // retrieving all data posts 
 
-getPostDetails(){
+getPostDetails(pgnum:any){
 
-  return this.http.get('http://192.168.2.6:4000/post?limit=10&pageNumber=0')
+  return this.http.get(`http://192.168.2.6:4000/post?limit=3&pageNumber=${pgnum}`)
 }
 
 

@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { LogoutService } from '../logout.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
 hoverOrClick:any={
   "home":true,
@@ -16,8 +17,15 @@ hoverOrClick:any={
 showEvents:any;
 showCommunity:any;
 showHome:any;
+username:any;
+usermail:any;
 
+constructor(private lout:LogoutService){}
 
+ngOnInit(): void {
+  this.username=localStorage.getItem('username')
+  
+}
 
 
 
@@ -36,6 +44,10 @@ this.hoverOrClick[selection]=true
 
 }
 
+
+logoutuser(){
+ this.lout.logout()
+}
 
 
 }

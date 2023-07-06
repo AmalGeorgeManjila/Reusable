@@ -1,12 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { PostsServiceService } from './posts-service.service';
 import { compileComponentFromMetadata } from '@angular/compiler';
+import { FeedserviceService } from '../feedservice.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
+})
+
+@Injectable({
+  providedIn:'root'
 })
 export class PostsComponent implements OnInit {
   CommentForm = this.fb.group(
@@ -27,25 +33,45 @@ export class PostsComponent implements OnInit {
   current_page_height:any;
   commentfromuser:any;
   replyfromuser:any;
-  constructor(private fb: FormBuilder,private postservice:PostsServiceService) { }
+
+  booleanObservable: Observable<boolean>=this.feedservice.nextfeedset$;
+pgnum:any=0;
+
+
+  constructor(private fb: FormBuilder,private postservice:PostsServiceService,private renderer:Renderer2,private feedservice:FeedserviceService) { }
 
  
   posts:any=[];
 
   ngOnInit(): void {
+    this.subscribeToBooleanObservable();
    
-    this.getFeedsandPost();
+    this.getFeedsandPost(this.pgnum);
 
     for(let i=0;i<this.posts.length;i++){
       console.log(this.posts[i].fullcomment);
       
     }
 
-    localStorage.setItem('user',"sonupneloj@tnpconsultants.com");
-
     
+
+    // scrolling
+
+    // const divElement = document.getElementById('feed'); // or use ViewChild to get the reference
+    // if (divElement) {
+    //   this.renderer.listen(divElement, 'scrollend', (event) => {
+    //     // Handle scroll event here
+    //     console.log('Div scrolled');
+    //   });
+    // }
+
+
+  
+
   }
 
+
+ 
   // posts: any = [{
   //   "name": "Louis",
   //   "team": "TNP France",
@@ -444,11 +470,17 @@ console.log(data)
   }
 
 
-  getFeedsandPost(){
+  getFeedsandPost(pgnum:any){
 
-     this.postservice.getPostDetails().subscribe((data:any)=>{
+     this.postservice.getPostDetails(pgnum).subscribe((data:any)=>{
 
-      this.posts=data;
+
+      
+      for(let d=0;d<data.length;d++){
+this.posts.push(data[d])
+      }
+      console.log(this.posts);
+      
       this.posts.map((post:any)=>post['pagenumber']=-1);
       this.posts.map((post:any)=>post.comments.map((comment:any)=>comment['pagenumber']=-1));
       // console.log(this.posts);
@@ -508,5 +540,18 @@ console.log(data)
 
   }
 
+
+  // srolling feeds pagination
+  subscribeToBooleanObservable() {
+    this.booleanObservable.subscribe((value: boolean) => {
+      if (value == true) {
+        console.log("now");
+        
+        this.pgnum++;
+        // Call your method when the Observable emits 'true'
+        this.getFeedsandPost(this.pgnum);
+      }
+    });
+  }
 
 }
