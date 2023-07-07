@@ -8,6 +8,7 @@
     width: 100%;
    
     position: fixed;
+    z-index: 4000;
     
     top: 0%;
 }
@@ -19,27 +20,28 @@
     background-color: rgb(255, 255, 255);
     position: fixed;
   
- z-index: 3;
+ z-index: 4001;
     top: 50%;
     left: 50%;
     
     transform:translate(-50%,-50%);
-       width: 500px;
-       height: 500px; 
-       padding: 50px;
+    width: 500px;
+       min-width: 300px;
+       height: auto; 
+       padding: 30px ;
        border-radius: 5%;
-padding-block: 20px;
+/* padding-block: 20px; */
 }
 
 .main>button{
 
     position: absolute;
-    height: 10%;
+    height: 8%;
     background-color: #999999;
     border: none;
     outline: none;
-    right: 2.5%;
-    top:  2.5%;
+    right: 2%;
+    top:  2%;
     color: snow;
     /* padding: 5px; */
     display: grid;
@@ -55,16 +57,22 @@ padding-block: 20px;
 .group{
     display: flex;
     flex-direction: column;
+    row-gap: 25%;
     font-family: "Times New Roman", Times, serif;
-     background-color: #e7e6e7;
+     /* background-color: #0705077f; */
     border:none;
     border-radius: 5%;
     border-color: black;
     height: auto;
-    margin-block:5%;
-padding:10px 20px ;
+    margin-block:40px;
+padding:20px 20px ;
 align-items: stretch;
 
+}
+
+.group>input{
+    outline: none;
+    border: none;
 }
 .tags{
     /* border:1px solid black; */
@@ -73,23 +81,27 @@ align-items: stretch;
    
 }
 .text{
-   
+  
     font-weight: bold;
 
 }
+
+
 .text1{
    
     border: none;
     border-radius: 5%;
   
 }
-.button{
+.tagarray{
     border-radius:10px ;
     overflow: hidden;
     height: 50px;
+    border: 1px solid #90909061;
+    /* margin-block: 30px; */
     /* background-color: aqua; */
 }
-.button>input{
+.tagarray>input{
     border: none;
     border-radius: 0px;
     flex: 7;
@@ -97,21 +109,21 @@ align-items: stretch;
 
     
 }
-    .button>button{
+    .tagarray>button{
         flex:2;
         border: none;
         color: var(--lightGreen);
         background-color: var(--lightGreenShade);
 
     }
-    .button>button:hover,.button>button:focus{
+    .tagarray>button:hover,.tagarray>button:focus{
         
         outline: none;
         color: snow;
         background-color: var(--lightGreen);
 
     }
-    .button>input:focus{
+    .tagarray>input:focus{
        outline: none;
         
     
@@ -122,11 +134,12 @@ align-items: stretch;
         color: var(--lightGreen);
         background-color:#fff;
         border: 1px solid var(--lightGreen);
-        border-radius: 5px;
-position: fixed;
-bottom: 5%;
-left: 50%;
-transform: translate(-50%,50%);
+        border-radius: 10px;
+/* position: fixed; */
+/* bottom: 5%; */
+/* left: 50%; */
+/* transform: translate(-50%,50%); */
+
     }
 
     .submit:hover,.submit:focus{
@@ -134,7 +147,7 @@ transform: translate(-50%,50%);
         background-color: var(--lightGreen);
     }
 
-    .tagarray{
+    .tagarraytext{
         float: left;
         color: var(--lightGreen);
         

@@ -12,7 +12,7 @@ export class PostsServiceService {
 
 getPostDetails(pgnum:any){
 
-  return this.http.get(`http://192.168.2.6:4000/post?limit=3&pageNumber=${pgnum}`)
+  return this.http.get(`http://192.168.2.6:4000/post?limit=8&pageNumber=${pgnum}`)
 }
 
 

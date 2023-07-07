@@ -20,8 +20,13 @@ export class LoaderInterceptor implements HttpInterceptor {
 
       return next.handle(request).pipe(
 
+        
         finalize(() => {
-          this.lout.notloading();
+
+          setTimeout(() => {
+            this.lout.notloading();
+          }, 250);
+          
         })
         
         );

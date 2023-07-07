@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PostsServiceService } from '../landingpage/posts/posts-service.service';
+import { LogoutService } from '../logout.service';
 
 @Component({
   selector: 'app-postdialog',
@@ -12,7 +13,8 @@ export class PostdialogComponent {
   tagarray:any=[];
   newTag:any='';
 
-  constructor(private fb: FormBuilder,private dialogRef:MatDialogRef<PostdialogComponent>,private ps:PostsServiceService){
+  constructor(private fb: FormBuilder,private dialogRef:MatDialogRef<PostdialogComponent>,private ps:PostsServiceService,
+    private lout:LogoutService){
 
   }
 
@@ -60,8 +62,11 @@ submitPost(){
     console.log(data);
     
   });
+  this.Createpost.reset;
+  this.tagarray=[];
   // this.ps.getPostDetails;
-    console.log(body);
-  this.closedialog()
+    // console.log(body);
+
+    this.closedialog()
 }
 }

@@ -9,6 +9,7 @@ import { LogoutService } from '../logout.service';
 import { PostsServiceService } from './posts/posts-service.service';
 import { PostsComponent } from './posts/posts.component';
 import { FeedserviceService } from './feedservice.service';
+import { DataService } from '../data.service';
 const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
 
 @Component({
@@ -34,7 +35,8 @@ export class LandingpageComponent {
     private lout:LogoutService,
     private postservice:PostsServiceService,
     private postcomp:PostsComponent,
-    private feedservice:FeedserviceService
+    private feedservice:FeedserviceService,
+    private ds:DataService,
   ) { }
 
   ngOnInit() {
@@ -150,10 +152,26 @@ export class LandingpageComponent {
  getprofile(){
   this.http.get(GRAPH_ENDPOINT).subscribe(profile=>{
     this.profile=profile
-    console.log(this.profile.mail);
+    // console.log(this.profile);
     localStorage.setItem('username',this.profile.displayName)
     localStorage.setItem('usermail',this.profile.mail)
+    localStorage.setItem('firstname',this.profile.givenName)
+    localStorage.setItem('lastname',this.profile.surname)
+    
+    // this.ds.login();
   })
+  const usermail=localStorage.getItem('usermail');
+  const firstname = localStorage.getItem('firstname');
+  const lastname =  localStorage.getItem('lastname');
+    const body={
+      "firstName": firstname,
+      "lastName": lastname,
+      "email": usermail
+    }
+    // alert(usermail)
+    this.http.post('http://192.168.2.6:4000/signup/',body).subscribe((data:any)=>{
+      alert(data)
+    })
  }
 
 
@@ -177,7 +195,7 @@ export class LandingpageComponent {
 
 scrollfeed(event:any){
 
-  const wind=window.screen.height;
+  // const wind=event.targe.wheeldeltaY;
   // console.log(wind);
   
 
@@ -186,9 +204,11 @@ scrollfeed(event:any){
   // console.log(event.target.scrollHeight - event.target.clientHeight);
   // console.log(event.target.clientHeight + " clientheight");
   // console.log(event.target.scrollTop);
+  // console.log(wind);
 
-if(event.target.scrollHeight - event.target.clientHeight <=event.target.scrollTop ){
-  // alert("now")
+if((event.target.scrollHeight - event.target.clientHeight <event.target.scrollTop+50)){
+
+  
   this.feedservice.nextfeed()
 }
   

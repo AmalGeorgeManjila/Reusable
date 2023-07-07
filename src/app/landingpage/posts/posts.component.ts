@@ -4,6 +4,7 @@ import { PostsServiceService } from './posts-service.service';
 import { compileComponentFromMetadata } from '@angular/compiler';
 import { FeedserviceService } from '../feedservice.service';
 import { Observable } from 'rxjs';
+import { LogoutService } from 'src/app/logout.service';
 
 @Component({
   selector: 'app-posts',
@@ -35,16 +36,23 @@ export class PostsComponent implements OnInit {
   replyfromuser:any;
 
   booleanObservable: Observable<boolean>=this.feedservice.nextfeedset$;
+
 pgnum:any=0;
 
 
-  constructor(private fb: FormBuilder,private postservice:PostsServiceService,private renderer:Renderer2,private feedservice:FeedserviceService) { }
+  constructor(
+    private lout:LogoutService,
+    private fb: FormBuilder,
+    private postservice:PostsServiceService,
+    private renderer:Renderer2,
+    private feedservice:FeedserviceService) { }
 
  
   posts:any=[];
 
   ngOnInit(): void {
     this.subscribeToBooleanObservable();
+    
    
     this.getFeedsandPost(this.pgnum);
 
@@ -552,6 +560,13 @@ this.posts.push(data[d])
         this.getFeedsandPost(this.pgnum);
       }
     });
+
+   
   }
+
+
+
+
+
 
 }
