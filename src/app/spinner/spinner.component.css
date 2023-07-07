@@ -1,17 +1,18 @@
 .body{
-    background-color: #252525e8;
+    background-color: #0707078a;
     display: grid;
     place-items: center;
     height: 100vh;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    backdrop-filter: blur(2px);
 }
 
 .parent{
 
     /* background-color: aquamarine; */
-    height:80px;
+    height:100px;
     aspect-ratio: 1;
     animation: load .5s linear infinite ;
 }
@@ -32,7 +33,7 @@ position: absolute;
 
 .parent>div:after{
 
-    width: 5%;
+    width: 4%;
     aspect-ratio: 1;
     background-color: rgb(43, 214, 80);
     content: '';
@@ -44,7 +45,7 @@ position: absolute;
 
 .parent>div:before{
 
-    width: 5%;
+    width: 4%;
     aspect-ratio: 1;
     background-color:rgb(255, 255, 255);
     content: '';

@@ -34,7 +34,7 @@ export class PostsComponent implements OnInit {
   current_page_height:any;
   commentfromuser:any;
   replyfromuser:any;
-
+  username:any
   booleanObservable: Observable<boolean>=this.feedservice.nextfeedset$;
 
 pgnum:any=0;
@@ -51,6 +51,8 @@ pgnum:any=0;
   posts:any=[];
 
   ngOnInit(): void {
+     this.username=localStorage.getItem('username')
+
     this.subscribeToBooleanObservable();
     
    
@@ -479,6 +481,7 @@ console.log(data)
 
 
   getFeedsandPost(pgnum:any){
+    console.log("now");
 
      this.postservice.getPostDetails(pgnum).subscribe((data:any)=>{
 
@@ -491,10 +494,10 @@ this.posts.push(data[d])
       
       this.posts.map((post:any)=>post['pagenumber']=-1);
       this.posts.map((post:any)=>post.comments.map((comment:any)=>comment['pagenumber']=-1));
-      // console.log(this.posts);
+      
     })
 
-   
+    
     
   }
 

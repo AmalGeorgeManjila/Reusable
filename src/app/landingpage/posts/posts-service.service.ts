@@ -12,7 +12,7 @@ export class PostsServiceService {
 
 getPostDetails(pgnum:any){
 
-  return this.http.get(`http://192.168.2.6:4000/post?limit=8&pageNumber=${pgnum}`)
+  return this.http.get(`http://192.168.2.6:4000/post?limit=5&pageNumber=${pgnum}`)
 }
 
 
@@ -32,11 +32,13 @@ getrepliesfull(commentid:any,pagenumber:any){
 // posting comment TO DB
 
 postComment(post_id:any,comment:string){
-let username=localStorage.getItem('user')
+const usermail=localStorage.getItem('usermail')
+const username=localStorage.getItem('username')
   let body={
     "comments": comment,
+    "name":username,
     "likes": 0,
-    "user_email":username
+    "user_email":usermail
   }
 
   console.log(body,post_id);
@@ -46,12 +48,13 @@ let username=localStorage.getItem('user')
 
 
 postReply(comments_id:any,reply:string,replyname:any){
-  let username=localStorage.getItem('user')
+  let username=localStorage.getItem('username')
+  let usermail=localStorage.getItem('usermail')
     let body={
       comments_id,
       "reply": reply,
       "likes": 0,
-      "user_email": username,
+      "user_email": usermail,
       "showreplybutton": true,
       replyname
     }

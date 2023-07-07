@@ -22,6 +22,7 @@ const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
 
 
 export class LandingpageComponent {
+  timesscroll:any=0;
   profile: any;
   isIframe = false;
   loginDisplay = false;
@@ -205,13 +206,14 @@ scrollfeed(event:any){
   // console.log(event.target.clientHeight + " clientheight");
   // console.log(event.target.scrollTop);
   // console.log(wind);
-
-if((event.target.scrollHeight - event.target.clientHeight <event.target.scrollTop+50)){
+ 
+if((event.target.scrollHeight - (event.target.clientHeight) == event.target.scrollTop)){
 
   
   this.feedservice.nextfeed()
 }
-  
+
+  this.timesscroll++;
 }
 
 
